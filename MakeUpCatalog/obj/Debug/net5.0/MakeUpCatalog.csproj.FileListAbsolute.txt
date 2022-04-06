@@ -1,0 +1,76 @@
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\appsettings.Development.json
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\appsettings.json
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\MakeUpCatalog.exe
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\MakeUpCatalog.deps.json
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\MakeUpCatalog.runtimeconfig.json
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\MakeUpCatalog.runtimeconfig.dev.json
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\MakeUpCatalog.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\ref\MakeUpCatalog.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\MakeUpCatalog.pdb
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.csproj.AssemblyReference.cache
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.AssemblyInfoInputs.cache
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.AssemblyInfo.cs
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.csproj.CoreCompileInputs.cache
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.MvcApplicationPartsAssemblyInfo.cs
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.MvcApplicationPartsAssemblyInfo.cache
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\staticwebassets\MakeUpCatalog.StaticWebAssets.Manifest.cache
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\staticwebassets\MakeUpCatalog.StaticWebAssets.xml
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\scopedcss\bundle\MakeUpCatalog.styles.css
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.RazorTargetAssemblyInfo.cache
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.csproj.CopyComplete
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\ref\MakeUpCatalog.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.pdb
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\obj\Debug\net5.0\MakeUpCatalog.genruntimeconfig.cache
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Humanizer.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\MySqlConnector.dll
+C:\Repositorios\MakeUpCatalog\MakeUpCatalog\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.csproj.AssemblyReference.cache
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.AssemblyInfoInputs.cache
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.AssemblyInfo.cs
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.csproj.CoreCompileInputs.cache
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.MvcApplicationPartsAssemblyInfo.cs
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.MvcApplicationPartsAssemblyInfo.cache
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\ref\MakeupCatalog.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.pdb
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\appsettings.Development.json
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\appsettings.json
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\MakeupCatalog.exe
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\MakeupCatalog.deps.json
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\MakeupCatalog.runtimeconfig.json
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\MakeupCatalog.runtimeconfig.dev.json
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\MakeupCatalog.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\ref\MakeupCatalog.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\MakeupCatalog.pdb
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Humanizer.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\MySqlConnector.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\staticwebassets\MakeupCatalog.StaticWebAssets.Manifest.cache
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\staticwebassets\MakeupCatalog.StaticWebAssets.xml
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\scopedcss\bundle\MakeupCatalog.styles.css
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.RazorTargetAssemblyInfo.cache
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.csproj.CopyComplete
+C:\Repositorios\MakeUpCatalog - Enum\MakeUpCatalog\obj\Debug\net5.0\MakeupCatalog.genruntimeconfig.cache

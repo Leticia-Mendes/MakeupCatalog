@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MakeupCatalog.Migrations
+namespace Database.MakeupCatalog.Migrations
 {
     public partial class init : Migration
     {
@@ -11,7 +11,22 @@ namespace MakeupCatalog.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "MakeupType",
+                columns: table => new
+                {
+                    MakeupTypeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MakeupType", x => x.MakeupTypeId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Products",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
@@ -25,19 +40,33 @@ namespace MakeupCatalog.Migrations
                     Price = table.Column<double>(type: "double", nullable: false),
                     Description = table.Column<string>(type: "varchar(600)", maxLength: 600, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    MakeupType = table.Column<int>(type: "int", nullable: false)
+                    MakeupTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Products_MakeupType_MakeupTypeId",
+                        column: x => x.MakeupTypeId,
+                        principalTable: "MakeupType",
+                        principalColumn: "MakeupTypeId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_MakeupTypeId",
+                table: "Products",
+                column: "MakeupTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "MakeupType");
         }
     }
 }

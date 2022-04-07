@@ -11,22 +11,22 @@ namespace MakeupCatalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class MakeupTypesController : ControllerBase
     {
         private readonly MakeupDbContext _context;
 
-        public ProductsController(MakeupDbContext context)
+        public MakeupTypesController(MakeupDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Products
+        // GET: api/MakeupTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
+        public async Task<ActionResult<IEnumerable<MakeupType>>> GetMakeupType()
         {
             try
             {
-                return await _context.Product.ToListAsync();
+                return await _context.MakeupType.ToListAsync();
             }
             catch (Exception e)
             {
@@ -34,20 +34,20 @@ namespace MakeupCatalog.Controllers
             }
         }
 
-        // GET: api/Products/5
+        // GET: api/MakeupTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<MakeupType>> GetMakeupType(int id)
         {
             try
             {
-                var product = await _context.Product.FindAsync(id);
+                var makeupType = await _context.MakeupType.FindAsync(id);
 
-                if (product == null)
+                if (makeupType == null)
                 {
-                    return NotFound($"The product id={id} was not found.");
+                    return NotFound($"The makeup type id={id} was not found.");
                 }
 
-                return product;
+                return makeupType;
             }
             catch (Exception e)
             {
@@ -55,27 +55,27 @@ namespace MakeupCatalog.Controllers
             }
         }
 
-        // PUT: api/Products/5
+        // PUT: api/MakeupTypes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        public async Task<IActionResult> PutMakeupType(int id, MakeupType makeupType)
         {
             try
             {
-                if (id != product.ProductId)
+                if (id != makeupType.MakeupTypeId)
                 {
                     return BadRequest();
                 }
 
-                _context.Entry(product).State = EntityState.Modified;
+                _context.Entry(makeupType).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return Ok($"The product id={id} has been update successfully.");
+                return Ok($"The makeup type id={id} has been update successfully.");
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(id))
+                if (!MakeupTypeExists(id))
                 {
-                    return NotFound($"The product id={id} was not found.");
+                    return NotFound($"The makeup type id={id} was not found.");
                 }
                 else
                 {
@@ -84,17 +84,17 @@ namespace MakeupCatalog.Controllers
             }
         }
 
-        // POST: api/Products
+        // POST: api/MakeupTypes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        public async Task<ActionResult<MakeupType>> PostMakeupType(MakeupType makeupType)
         {
             try
             {
-                _context.Product.Add(product);
+                _context.MakeupType.Add(makeupType);
                 await _context.SaveChangesAsync();
 
-                return new CreatedAtRouteResult("GetProduct", new { id = product.ProductId }, product);
+                return new CreatedAtRouteResult("GetMakeupType", new { id = makeupType.MakeupTypeId }, makeupType);
             }
             catch (Exception e)
             {
@@ -102,19 +102,19 @@ namespace MakeupCatalog.Controllers
             }
         }
 
-        // DELETE: api/Products/5
+        // DELETE: api/MakeupTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteMakeupType(int id)
         {
             try
             {
-                var product = await _context.Product.FindAsync(id);
-                if (product == null)
+                var makeupType = await _context.MakeupType.FindAsync(id);
+                if (makeupType == null)
                 {
-                    return NotFound($"The product id={id} was not found.");
+                    return NotFound($"The makeup type id={id} was not found.");
                 }
 
-                _context.Product.Remove(product);
+                _context.MakeupType.Remove(makeupType);
                 await _context.SaveChangesAsync();
 
                 return NoContent();
@@ -125,9 +125,9 @@ namespace MakeupCatalog.Controllers
             }
         }
 
-        private bool ProductExists(int id)
+        private bool MakeupTypeExists(int id)
         {
-            return _context.Product.Any(e => e.ProductId == id);
+            return _context.MakeupType.Any(e => e.MakeupTypeId == id);
         }
     }
 }

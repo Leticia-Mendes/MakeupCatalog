@@ -116,10 +116,5 @@ namespace MakeupCatalog.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-        //private bool MakeupTypeExists(int id)
-        //{
-        //    return _context.MakeupTypeRepository.Any(e => e.MakeupTypeId == id);
-        //}
     }
 }

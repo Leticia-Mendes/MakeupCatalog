@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Repository.MakeupCatalog;
 
 namespace MakeupCatalog.Controllers
 {
@@ -13,9 +14,9 @@ namespace MakeupCatalog.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly MakeupDbContext _context;
+        private readonly IUnitOfWork _context;
 
-        public ProductsController(MakeupDbContext context)
+        public ProductsController(IUnitOfWork context)
         {
             _context = context;
         }
@@ -26,7 +27,7 @@ namespace MakeupCatalog.Controllers
         {
             try
             {
-                return await _context.Product.ToListAsync();
+                return await _context.ProductRepository.Get().ToListAsync();
             }
             catch (Exception e)
             {
@@ -40,7 +41,7 @@ namespace MakeupCatalog.Controllers
         {
             try
             {
-                var product = await _context.Product.FindAsync(id);
+                var product = await _context.ProductRepository.GetById(p => p.ProductId == id);
 
                 if (product == null)
                 {
@@ -55,46 +56,39 @@ namespace MakeupCatalog.Controllers
             }
         }
 
+        // POST: api/Products
+        [HttpPost]
+        public async Task<ActionResult> PostProduct([FromBody]Product product)
+        {
+            try
+            {
+                _context.ProductRepository.Add(product);
+                await _context.Commit();
+
+                new CreatedAtRouteResult("GetProduct", 
+                    new { id = product.ProductId }, product);
+                return Ok("Ok.");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        public async Task<ActionResult> PutProduct(int id, [FromBody] Product product)
         {
             try
             {
                 if (id != product.ProductId)
                 {
-                    return BadRequest();
-                }
-
-                _context.Entry(product).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-                return Ok($"The product id={id} has been update successfully.");
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
                     return NotFound($"The product id={id} was not found.");
                 }
-                else
-                {
-                    throw;
-                }
-            }
-        }
 
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
-        {
-            try
-            {
-                _context.Product.Add(product);
-                await _context.SaveChangesAsync();
-
-                return new CreatedAtRouteResult("GetProduct", new { id = product.ProductId }, product);
+                _context.ProductRepository.Update(product);
+                await _context.Commit();
+                return Ok($"The product id={id} has been update successfully.");
             }
             catch (Exception e)
             {
@@ -108,14 +102,14 @@ namespace MakeupCatalog.Controllers
         {
             try
             {
-                var product = await _context.Product.FindAsync(id);
+                var product = await _context.ProductRepository.GetById(p => p.ProductId == id);
                 if (product == null)
                 {
                     return NotFound($"The product id={id} was not found.");
                 }
 
-                _context.Product.Remove(product);
-                await _context.SaveChangesAsync();
+                _context.ProductRepository.Delete(product);
+                await _context.Commit();
 
                 return NoContent();
             }
@@ -123,11 +117,6 @@ namespace MakeupCatalog.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
-
-        private bool ProductExists(int id)
-        {
-            return _context.Product.Any(e => e.ProductId == id);
         }
     }
 }

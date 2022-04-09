@@ -2135,6 +2135,20 @@
         "runtime": {
           "bin/placeholder/Domain.MakeupCatalog.dll": {}
         }
+      },
+      "Repository.MakeupCatalog/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Database.MakeupCatalog": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "5.0.15"
+        },
+        "compile": {
+          "bin/placeholder/Repository.MakeupCatalog.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repository.MakeupCatalog.dll": {}
+        }
       }
     }
   },
@@ -7384,6 +7398,11 @@
       "type": "project",
       "path": "../Domain.MakeupCatalog/Domain.MakeupCatalog.csproj",
       "msbuildProject": "../Domain.MakeupCatalog/Domain.MakeupCatalog.csproj"
+    },
+    "Repository.MakeupCatalog/1.0.0": {
+      "type": "project",
+      "path": "../Repository.MakeupCatalog/Repository.MakeupCatalog.csproj",
+      "msbuildProject": "../Repository.MakeupCatalog/Repository.MakeupCatalog.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7392,29 +7411,32 @@
       "Microsoft.EntityFrameworkCore >= 5.0.15",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.15",
       "Pomelo.EntityFrameworkCore.MySql >= 5.0.4",
+      "Repository.MakeupCatalog >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\leticia.mendes\\.nuget\\packages\\": {},
+    "C:\\Users\\laraujo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C# codigo\\MakeUpCatalog\\MakeUpCatalog\\MakeupCatalog.csproj",
+      "projectUniqueName": "C:\\Repositorios\\MakeUpCatalog - Repo\\MakeUpCatalog\\MakeupCatalog.csproj",
       "projectName": "MakeupCatalog",
-      "projectPath": "D:\\C# codigo\\MakeUpCatalog\\MakeUpCatalog\\MakeupCatalog.csproj",
-      "packagesPath": "C:\\Users\\leticia.mendes\\.nuget\\packages\\",
-      "outputPath": "D:\\C# codigo\\MakeUpCatalog\\MakeUpCatalog\\obj\\",
+      "projectPath": "C:\\Repositorios\\MakeUpCatalog - Repo\\MakeUpCatalog\\MakeupCatalog.csproj",
+      "packagesPath": "C:\\Users\\laraujo\\.nuget\\packages\\",
+      "outputPath": "C:\\Repositorios\\MakeUpCatalog - Repo\\MakeUpCatalog\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\leticia.mendes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\laraujo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -7424,14 +7446,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://repo.rdisoftware.com/artifactory/api/nuget/rdi-nuget-virtual": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\C# codigo\\MakeUpCatalog\\Database.MakeupCatalog\\Database.MakeupCatalog.csproj": {
-              "projectPath": "D:\\C# codigo\\MakeUpCatalog\\Database.MakeupCatalog\\Database.MakeupCatalog.csproj"
+            "C:\\Repositorios\\MakeUpCatalog - Repo\\Database.MakeupCatalog\\Database.MakeupCatalog.csproj": {
+              "projectPath": "C:\\Repositorios\\MakeUpCatalog - Repo\\Database.MakeupCatalog\\Database.MakeupCatalog.csproj"
+            },
+            "C:\\Repositorios\\MakeUpCatalog - Repo\\Repository.MakeupCatalog\\Repository.MakeupCatalog.csproj": {
+              "projectPath": "C:\\Repositorios\\MakeUpCatalog - Repo\\Repository.MakeupCatalog\\Repository.MakeupCatalog.csproj"
             }
           }
         }
@@ -7475,12 +7501,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.12, 5.0.12]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7489,7 +7509,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

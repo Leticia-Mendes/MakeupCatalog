@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Repository.MakeupCatalog;
 
 namespace MakeUpCatalog
 {
@@ -21,8 +22,12 @@ namespace MakeUpCatalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             string mySqlConnection = Configuration.GetConnectionString("Default");
-            services.AddDbContext<MakeupDbContext>(options => options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+            services.AddDbContext<MakeupDbContext>(options =>
+                options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

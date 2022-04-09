@@ -7,13 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakeupCatalog", "MakeUpCata
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Database", "3 - Database", "{884E1B63-5574-4A84-8FBD-30986752FF51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.MakeupCatalog", "Database.MakeupCatalog\Database.MakeupCatalog.csproj", "{D3F8CF21-0944-4B21-B234-74C2399CB320}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.MakeupCatalog", "Database.MakeupCatalog\Database.MakeupCatalog.csproj", "{D3F8CF21-0944-4B21-B234-74C2399CB320}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{25600E02-FBFD-46FA-BA7F-6D44A1390FE0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{FFBB502C-FF32-41DA-8801-50B1B4D4C143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.MakeupCatalog", "Domain.MakeupCatalog\Domain.MakeupCatalog.csproj", "{D6EF54FF-BF69-415A-A445-571EEB4827D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.MakeupCatalog", "Domain.MakeupCatalog\Domain.MakeupCatalog.csproj", "{D6EF54FF-BF69-415A-A445-571EEB4827D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Repository", "4 - Repository", "{BAE0B261-A2E8-4459-81A0-0B714AB1987E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.MakeupCatalog", "Repository.MakeupCatalog\Repository.MakeupCatalog.csproj", "{5069F0A1-9C27-4900-A9FD-5E49863F7E1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,10 @@ Global
 		{D6EF54FF-BF69-415A-A445-571EEB4827D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6EF54FF-BF69-415A-A445-571EEB4827D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6EF54FF-BF69-415A-A445-571EEB4827D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5069F0A1-9C27-4900-A9FD-5E49863F7E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5069F0A1-9C27-4900-A9FD-5E49863F7E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5069F0A1-9C27-4900-A9FD-5E49863F7E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5069F0A1-9C27-4900-A9FD-5E49863F7E1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,7 @@ Global
 		{5542C8FE-106A-4A28-9430-84F4354B25CF} = {FFBB502C-FF32-41DA-8801-50B1B4D4C143}
 		{D3F8CF21-0944-4B21-B234-74C2399CB320} = {884E1B63-5574-4A84-8FBD-30986752FF51}
 		{D6EF54FF-BF69-415A-A445-571EEB4827D4} = {25600E02-FBFD-46FA-BA7F-6D44A1390FE0}
+		{5069F0A1-9C27-4900-A9FD-5E49863F7E1F} = {BAE0B261-A2E8-4459-81A0-0B714AB1987E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B7ADC2F-4078-419F-A73B-E7861836F761}

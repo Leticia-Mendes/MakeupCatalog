@@ -1,10 +1,9 @@
-﻿using Database.MakeupCatalog;
-using Domain.MakeupCatalog;
+﻿using Domain.MakeupCatalog;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Repository.MakeupCatalog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MakeupCatalog.Controllers
@@ -13,9 +12,9 @@ namespace MakeupCatalog.Controllers
     [ApiController]
     public class MakeupTypesController : ControllerBase
     {
-        private readonly MakeupDbContext _context;
+        private readonly IUnitOfWork _context;
 
-        public MakeupTypesController(MakeupDbContext context)
+        public MakeupTypesController(IUnitOfWork context)
         {
             _context = context;
         }
@@ -26,7 +25,7 @@ namespace MakeupCatalog.Controllers
         {
             try
             {
-                return await _context.MakeupType.ToListAsync();
+                return await _context.MakeupTypeRepository.Get().ToListAsync();
             }
             catch (Exception e)
             {
@@ -40,7 +39,7 @@ namespace MakeupCatalog.Controllers
         {
             try
             {
-                var makeupType = await _context.MakeupType.FindAsync(id);
+                var makeupType = await _context.MakeupTypeRepository.GetById(x => x.MakeupTypeId == id);
 
                 if (makeupType == null)
                 {
@@ -55,46 +54,39 @@ namespace MakeupCatalog.Controllers
             }
         }
 
+        // POST: api/MakeupTypes
+        [HttpPost]
+        public async Task<ActionResult> PostMakeupType([FromBody] MakeupType makeupType)
+        {
+            try
+            {
+                _context.MakeupTypeRepository.Add(makeupType);
+                await _context.Commit();
+
+                new CreatedAtRouteResult("GetMakeupType",
+                    new { id = makeupType.MakeupTypeId }, makeupType);
+                return Ok("Ok.");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         // PUT: api/MakeupTypes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMakeupType(int id, MakeupType makeupType)
+        public async Task<ActionResult> PutMakeupType(int id, [FromBody] MakeupType makeupType)
         {
             try
             {
                 if (id != makeupType.MakeupTypeId)
                 {
-                    return BadRequest();
-                }
-
-                _context.Entry(makeupType).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-                return Ok($"The makeup type id={id} has been update successfully.");
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MakeupTypeExists(id))
-                {
                     return NotFound($"The makeup type id={id} was not found.");
                 }
-                else
-                {
-                    throw;
-                }
-            }
-        }
 
-        // POST: api/MakeupTypes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<MakeupType>> PostMakeupType(MakeupType makeupType)
-        {
-            try
-            {
-                _context.MakeupType.Add(makeupType);
-                await _context.SaveChangesAsync();
-
-                return new CreatedAtRouteResult("GetMakeupType", new { id = makeupType.MakeupTypeId }, makeupType);
+                _context.MakeupTypeRepository.Update(makeupType);
+                await _context.Commit();
+                return Ok($"The makeup type id={id} has been update successfully.");
             }
             catch (Exception e)
             {
@@ -108,14 +100,14 @@ namespace MakeupCatalog.Controllers
         {
             try
             {
-                var makeupType = await _context.MakeupType.FindAsync(id);
+                var makeupType = await _context.MakeupTypeRepository.GetById(x => x.MakeupTypeId == id);
                 if (makeupType == null)
                 {
                     return NotFound($"The makeup type id={id} was not found.");
                 }
 
-                _context.MakeupType.Remove(makeupType);
-                await _context.SaveChangesAsync();
+                _context.MakeupTypeRepository.Delete(makeupType);
+                await _context.Commit();
 
                 return NoContent();
             }
@@ -125,9 +117,9 @@ namespace MakeupCatalog.Controllers
             }
         }
 
-        private bool MakeupTypeExists(int id)
-        {
-            return _context.MakeupType.Any(e => e.MakeupTypeId == id);
-        }
+        //private bool MakeupTypeExists(int id)
+        //{
+        //    return _context.MakeupTypeRepository.Any(e => e.MakeupTypeId == id);
+        //}
     }
 }

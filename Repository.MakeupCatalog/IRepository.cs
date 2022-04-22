@@ -1,20 +1,26 @@
-﻿using System;
+﻿using Domain.MakeupCatalog;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 
-namespace Repository.MakeupCatalog
+namespace Repo.MakeupCatalog
 {
-    public interface IRepository<T>
+    public interface IRepository
     {
-        IQueryable<T> Get();
+        IQueryable<T> Get<T>(T entity) where T : class;
 
-        Task<T> GetById(Expression<Func<T, bool>> predicate);
+        void Add<T>(T entity) where T : class;
 
-        void Add(T entity);
+        void Update<T>(T entity) where T : class;
 
-        void Update(T entity);
+        void Delete<T>(T entity) where T : class;
 
-        void Delete(T entity);
+        void SaveChanges<T>(T entity) where T : class;
+
+        Product[] GetAllProducts(bool includeMakeupType);
+
+        Product GetProductById(int productId, bool includeMakeupType);
+
+        MakeupType[] GetAllMakeupTypes(bool includeProduct);
+
+        MakeupType GetMakeupTypesById(int makeupTypeId, bool includeProduct);
     }
 }

@@ -1,12 +1,9 @@
-﻿using Database.MakeupCatalog;
-using Domain.MakeupCatalog;
+﻿using MakeupCatalog.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Repo.MakeupCatalog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Repository.MakeupCatalog;
+using Domain.MakeupCatalog;
 
 namespace MakeupCatalog.Controllers
 {
@@ -14,20 +11,35 @@ namespace MakeupCatalog.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IUnitOfWork _context;
+        public readonly IRepository _repo;
 
-        public ProductsController(IUnitOfWork context)
+        public ProductsController(IRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
+        public ActionResult<IEnumerable<ProductModel>> GetAllProducts()
         {
             try
             {
-                return await _context.ProductRepository.Get().ToListAsync();
+                var result = _repo.GetAllProducts(true);
+                List<ProductModel> productModelList = new List<ProductModel>();
+                foreach (var p in result)
+                {
+                    ProductModel product = new ProductModel();
+                    product.ProductId = p.ProductId;
+                    product.Name = p.Name;
+                    product.Color = p.Color;
+                    product.Brand = p.Brand;
+                    product.Price = p.Price;
+                    product.Description = p.Description;
+                    product.MakeupTypeId = p.MakeupTypeId;
+                    productModelList.Add(product);
+                }
+
+                return productModelList;
             }
             catch (Exception e)
             {
@@ -37,18 +49,17 @@ namespace MakeupCatalog.Controllers
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public IActionResult GetProductById(int id)
         {
             try
             {
-                var product = await _context.ProductRepository.GetById(p => p.ProductId == id);
-
+                var product = _repo.GetProductById(id, false);
                 if (product == null)
                 {
                     return NotFound($"The product id={id} was not found.");
                 }
 
-                return product;
+                return Ok(product);
             }
             catch (Exception e)
             {
@@ -58,15 +69,24 @@ namespace MakeupCatalog.Controllers
 
         // POST: api/Products
         [HttpPost]
-        public async Task<ActionResult> PostProduct([FromBody]Product product)
+        public IActionResult PostProduct([FromBody] ProductModel product)
         {
             try
             {
-                _context.ProductRepository.Add(product);
-                await _context.Commit();
+                _repo.Add( new Product() 
+                {
+                    Name = product.Name,
+                    Brand = product.Brand,
+                    Color = product.Color,
+                    Price = product.Price,
+                    Description = product.Description,
+                    //MakeupType = product.MakeupType,
+                    MakeupTypeId = product.MakeupTypeId
+                });
 
-                new CreatedAtRouteResult("GetProduct", 
-                    new { id = product.ProductId }, product);
+                _repo.SaveChanges(product);
+
+                new CreatedAtRouteResult("GetProduct", new { id = product.ProductId }, product);
                 return Ok("Ok.");
             }
             catch (Exception e)
@@ -77,17 +97,27 @@ namespace MakeupCatalog.Controllers
 
         // PUT: api/Products/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutProduct(int id, [FromBody] Product product)
+        public IActionResult PutProduct(int id, [FromBody] ProductModel product)
         {
             try
-            {
-                if (id != product.ProductId)
+            {             
+                var productFromDb = _repo.GetProductById(id, false);
+                if (productFromDb == null)
                 {
                     return NotFound($"The product id={id} was not found.");
                 }
 
-                _context.ProductRepository.Update(product);
-                await _context.Commit();
+                productFromDb.Name = product.Name;
+                productFromDb.Brand = product.Brand;
+                productFromDb.Color = product.Color;
+                productFromDb.Price = product.Price;
+                productFromDb.Description = product.Description;
+                //productFromDb.MakeupType = product.MakeupType;
+                productFromDb.MakeupTypeId = product.MakeupTypeId;
+                
+                _repo.Update(productFromDb);    
+
+                _repo.SaveChanges(product);
                 return Ok($"The product id={id} has been update successfully.");
             }
             catch (Exception e)
@@ -98,18 +128,18 @@ namespace MakeupCatalog.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public IActionResult DeleteProduct(int id)
         {
             try
             {
-                var product = await _context.ProductRepository.GetById(p => p.ProductId == id);
+                var product = _repo.GetProductById(id, false);
                 if (product == null)
                 {
                     return NotFound($"The product id={id} was not found.");
                 }
 
-                _context.ProductRepository.Delete(product);
-                await _context.Commit();
+                _repo.Delete(product);
+                _repo.SaveChanges(product);
 
                 return NoContent();
             }

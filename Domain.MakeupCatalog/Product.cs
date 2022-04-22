@@ -26,8 +26,13 @@ namespace Domain.MakeupCatalog
         [MaxLength(600, ErrorMessage = "Description must be max length 600 character")]
         public string Description { get; set; }
 
+        [ForeignKey("MakeupType")]
+        public int MakeupTypeId { get; set; }
+
         public MakeupType MakeupType { get; set; }
 
-        public int MakeupTypeId { get; set; }
+        public Product()
+        {
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Database.MakeupCatalog.Migrations
+namespace Infrastructure.MakeupCatalog.Migrations
 {
     public partial class init : Migration
     {

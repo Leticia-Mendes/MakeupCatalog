@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Database.MakeupCatalog\Database.MakeupCatalog.csproj" />
+    <ProjectReference Include="..\Database.MakeupCatalog\Infrastructure.MakeupCatalog.csproj" />
   </ItemGroup>
 
 </Project>

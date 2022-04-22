@@ -1,45 +1,100 @@
-﻿using Database.MakeupCatalog;
+﻿using Domain.MakeupCatalog;
+using Infrastructure.MakeupCatalog;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 
-namespace Repository.MakeupCatalog
+namespace Repo.MakeupCatalog
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository : IRepository
     {
-        protected MakeupDbContext Context;
+        private readonly MakeupDbContext _context;
 
         public Repository(MakeupDbContext context)
         {
-            Context = context;
+            _context = context;
         }
 
-        public IQueryable<T> Get()
+        public IQueryable<T> Get<T>(T entity) where T : class
         {
-            return Context.Set<T>().AsNoTracking();
+            return _context.Set<T>().AsNoTracking();
         }
 
-        public async Task<T> GetById(Expression<Func<T, bool>> predicate)
+        public void Add<T>(T entity) where T : class
         {
-            return await Context.Set<T>().SingleOrDefaultAsync(predicate);
+            _context.Add(entity);
         }
 
-        public void Add(T entity)
+        public void Update<T>(T entity) where T : class
         {
-            Context.Set<T>().Add(entity);
+            _context.Update(entity);
         }
 
-        public void Delete(T entity)
+        public void Delete<T>(T entity) where T : class
         {
-            Context.Set<T>().Remove(entity);
+            _context.Remove(entity);
         }
 
-        public void Update(T entity)
+        public void SaveChanges<T>(T entity) where T : class
         {
-            Context.Entry(entity).State = EntityState.Modified;
-            Context.Set<T>().Update(entity);
+            _context.SaveChanges();
+        }
+
+        Product[] IRepository.GetAllProducts(bool includeMakeupType)
+        {
+            IQueryable<Product> query = _context.Product;
+
+            if (includeMakeupType)
+            {
+                query = query.Include(mt => mt.MakeupType);
+            }
+
+            query = query.AsNoTracking().OrderBy(p => p.ProductId);
+
+            return query.ToArray();
+        }
+
+        public Product GetProductById(int productId, bool includeMakeupType)
+        {
+            IQueryable<Product> query = _context.Product;
+
+            if (includeMakeupType)
+            {
+                query = query.Include(mt => mt.MakeupType);
+            }
+
+            query = query.AsNoTracking().OrderBy(p => p.ProductId)
+                         .Where(p => p.ProductId == productId);
+
+            return query.FirstOrDefault();
+        }
+
+        public MakeupType[] GetAllMakeupTypes(bool includeProduct)
+        {
+            IQueryable<MakeupType> query = _context.MakeupType;
+
+            if (includeProduct)
+            {
+                query = query.Include(p => p.Product);
+            }
+
+            query = query.AsNoTracking().OrderBy(mt => mt.MakeupTypeId);
+
+            return query.ToArray();
+        }
+
+        public MakeupType GetMakeupTypesById(int makeupTypeId, bool includeProduct)
+        {
+            IQueryable<MakeupType> query = _context.MakeupType;
+
+            if (includeProduct)
+            {
+                query = query.Include(p => p.Product);
+            }
+
+            query = query.AsNoTracking().OrderBy(mt => mt.MakeupTypeId)
+                        .Where(p => p.MakeupTypeId == makeupTypeId);
+
+            return query.FirstOrDefault();
         }
     }
 }

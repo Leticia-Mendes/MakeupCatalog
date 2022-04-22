@@ -1,10 +1,9 @@
-﻿using Domain.MakeupCatalog;
+﻿using MakeupCatalog.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Repository.MakeupCatalog;
+using Repo.MakeupCatalog;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using Domain.MakeupCatalog;
 
 namespace MakeupCatalog.Controllers
 {
@@ -12,20 +11,31 @@ namespace MakeupCatalog.Controllers
     [ApiController]
     public class MakeupTypesController : ControllerBase
     {
-        private readonly IUnitOfWork _context;
+        public readonly IRepository _repo;
 
-        public MakeupTypesController(IUnitOfWork context)
+        public MakeupTypesController(IRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
-        // GET: api/MakeupTypes
+        //// GET: api/MakeupTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MakeupType>>> GetMakeupType()
+        public ActionResult<IEnumerable<MakeupTypeModel>> GetAllMakeupType()
         {
             try
             {
-                return await _context.MakeupTypeRepository.Get().ToListAsync();
+                var result = _repo.GetAllMakeupTypes(true);
+                List<MakeupTypeModel> makeupTypeModelList = new List<MakeupTypeModel>();
+                foreach (var mt in result)
+                {
+                    MakeupTypeModel makeupType = new MakeupTypeModel();
+                    makeupType.MakeupTypeId = mt.MakeupTypeId;
+                    makeupType.Name = mt.Name;
+                    makeupType.Product = makeupType.Product;
+                    makeupTypeModelList.Add(makeupType);
+                }
+
+                return makeupTypeModelList;
             }
             catch (Exception e)
             {
@@ -35,18 +45,17 @@ namespace MakeupCatalog.Controllers
 
         // GET: api/MakeupTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<MakeupType>> GetMakeupType(int id)
+        public IActionResult GetMakeupType(int id)
         {
             try
             {
-                var makeupType = await _context.MakeupTypeRepository.GetById(x => x.MakeupTypeId == id);
-
+                var makeupType = _repo.GetMakeupTypesById(id, false);
                 if (makeupType == null)
                 {
                     return NotFound($"The makeup type id={id} was not found.");
                 }
 
-                return makeupType;
+                return Ok(makeupType);
             }
             catch (Exception e)
             {
@@ -56,12 +65,16 @@ namespace MakeupCatalog.Controllers
 
         // POST: api/MakeupTypes
         [HttpPost]
-        public async Task<ActionResult> PostMakeupType([FromBody] MakeupType makeupType)
+        public IActionResult PostMakeupType([FromBody] MakeupTypeModel makeupType)
         {
             try
             {
-                _context.MakeupTypeRepository.Add(makeupType);
-                await _context.Commit();
+                _repo.Add(new MakeupType()
+                {
+                    Name = makeupType.Name,
+                });
+
+                _repo.SaveChanges(makeupType);
 
                 new CreatedAtRouteResult("GetMakeupType",
                     new { id = makeupType.MakeupTypeId }, makeupType);
@@ -75,17 +88,21 @@ namespace MakeupCatalog.Controllers
 
         // PUT: api/MakeupTypes/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutMakeupType(int id, [FromBody] MakeupType makeupType)
+        public IActionResult PutMakeupType(int id, [FromBody] MakeupTypeModel makeupType)
         {
             try
             {
-                if (id != makeupType.MakeupTypeId)
+                var makeupTypeFromDb = _repo.GetMakeupTypesById(id, false);
+                if (makeupTypeFromDb == null)
                 {
                     return NotFound($"The makeup type id={id} was not found.");
                 }
 
-                _context.MakeupTypeRepository.Update(makeupType);
-                await _context.Commit();
+                makeupTypeFromDb.Name = makeupType.Name;
+
+                _repo.Update( makeupTypeFromDb);
+
+                _repo.SaveChanges(makeupType);
                 return Ok($"The makeup type id={id} has been update successfully.");
             }
             catch (Exception e)
@@ -96,18 +113,18 @@ namespace MakeupCatalog.Controllers
 
         // DELETE: api/MakeupTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMakeupType(int id)
+        public IActionResult DeleteMakeupType(int id)
         {
             try
             {
-                var makeupType = await _context.MakeupTypeRepository.GetById(x => x.MakeupTypeId == id);
+                var makeupType = _repo.GetMakeupTypesById(id, false);
                 if (makeupType == null)
                 {
                     return NotFound($"The makeup type id={id} was not found.");
                 }
 
-                _context.MakeupTypeRepository.Delete(makeupType);
-                await _context.Commit();
+                _repo.Delete(makeupType);
+                _repo.SaveChanges(makeupType);
 
                 return NoContent();
             }
